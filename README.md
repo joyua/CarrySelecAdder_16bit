@@ -30,4 +30,4 @@ This project validates the correctness of a CSA designed in Cadence Virtuoso by 
 
 ## 👤 Author
 
-- JOYUA | Inha Univ. | 
+- JOYUA 
