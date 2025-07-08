@@ -16,11 +16,16 @@ def ripple_adder_nbit_list(a, b, cin, n):
         sum_bits.append(s)
     return sum_bits, carry
 
-def mux2to1(d0, d1, sel):
-    return d1 if sel else d0
-
-def mux_bitlist2to1(list0, list1, sel):
-    return [mux2to1(d0, d1, sel) for d0, d1 in zip(list0, list1)]
+def mux(d0, d1, sel):
+    """
+    2-to-1 멀티플렉서. 단일 비트(int)와 비트 리스트(list)를 모두 처리합니다.
+    """
+    if isinstance(d0, list):
+        # d0가 리스트인 경우, 리스트의 각 비트에 대해 멀티플렉싱을 수행
+        return [d1_bit if sel else d0_bit for d0_bit, d1_bit in zip(d0, d1)]
+    else:
+        # d0가 단일 비트(정수)인 경우, 일반적인 2-to-1 MUX 연산을 수행
+        return d1 if sel else d0
 
 def csa_block(a, b, prev_carry, n):
     """
@@ -31,8 +36,11 @@ def csa_block(a, b, prev_carry, n):
     """
     sum0, carry0 = ripple_adder_nbit_list(a, b, 0, n)
     sum1, carry1 = ripple_adder_nbit_list(a, b, 1, n)
-    selected_sum = mux_bitlist2to1(sum0, sum1, prev_carry)
-    selected_carry = mux2to1(carry0, carry1, prev_carry)
+    
+    # 통합된 mux 함수를 사용하여 sum과 carry를 선택
+    selected_sum = mux(sum0, sum1, prev_carry)
+    selected_carry = mux(carry0, carry1, prev_carry)
+    
     return selected_sum, selected_carry
 
 
