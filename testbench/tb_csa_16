@@ -1,0 +1,288 @@
+`timescale 1ns / 1ps
+module tb_csa_16;
+
+    reg [15:0] a, b;
+    reg Cin;
+    wire [15:0] sum;
+    wire Cout;
+
+    reg C0, C1;
+    reg [31:0] error_count;
+    reg [16:0] expected;
+
+    integer i, j;
+
+    csa_16 uut (
+        .a(a),
+        .b(b),
+        .Cin(Cin),
+        .C0(C0),
+        .C1(C1),
+        .sum(sum),
+        .Cout(Cout)
+    );
+
+    initial begin
+        C0 = 1'b0;
+        C1 = 1'b1;
+        error_count = 0;
+
+        $display("▶ START");
+
+        for (i = 0; i < 5000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+
+
+        for (i = 5000; i < 10000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+        for (i = 10000; i < 15000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+        for (i = 15000; i < 20000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+   
+        for (i = 20000; i < 25000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+
+        for (i = 25000; i < 30000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+        for (i = 30000; i < 35000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+        for (i = 35000; i < 40000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+        for (i = 40000; i < 45000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+        for (i = 45000; i < 50000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+        for (i = 50000; i < 55000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+        for (i = 55000; i < 60000; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+        for (i = 60000; i < 65536; i = i + 1) begin
+            for (j = 0; j < 65536; j = j + 1) begin
+                // Cin = 0
+                a = i; b = j; Cin = 0;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+
+                // Cin = 1
+                Cin = 1;
+                expected = a + b + Cin;
+                #1;
+                if ({Cout, sum} !== expected) begin
+                    error_count = error_count + 1;
+                end
+            end
+        end
+
+        $display("? DONE! Error count = %0d", error_count);
+        $finish;
+    end
+endmodule
+
